@@ -59,6 +59,23 @@ local v3_xzL=v3_101*250.1
 local v3_net=v3_010*25.01
 local pdloadedtime=nil
 
+local firesignal = function()
+	if permadeath then
+        replicatesignal(game.Players.LocalPlayer.ConnectDiedSignalBackend)
+	else
+	-- Do nothing.
+        end
+end
+
+local permadeathlmao = function()
+	if permadeath == true then
+	replicatesignal(game.Players.LocalPlayer.ConnectDiedSignalBackend)
+        wait(game.Players.RespawnTime + .1)
+	else
+	-- Do nothing.
+	end
+end
+
 --not "local function rs" to not assign debug names
 local rs=function()
 	local s=""
@@ -261,6 +278,7 @@ end
 local emptyfunction=function() end
 
 local permadeath=permadeath~=false
+local autorefit=autorefit~=true
 local fling=fling~=false
 local allowshiftlock=allowshiftlock~=false
 local ctrltp=ctrltp~=false
@@ -280,9 +298,7 @@ local c=nil
 local stopreanimate=function() 
 	if c then
 		c=nil
-		if replicatesignal then
-			replicatesignal(cdsb)
-		end
+		firesignal()
 		return true
 	end
 	return false
@@ -432,12 +448,12 @@ end)
 
 if permadeath then
     if replicatesignal then
-        replicatesignal(cdsb)
+        permadeathlmao()
         pdloadedtime=osclock()+rst
         local lastc=nil
         local hdied=function()
             if not c then
-                replicatesignal(cdsb)
+                permadeathlmao()
                 pdloadedtime=osclock()+rst
             end
         end
@@ -445,7 +461,7 @@ if permadeath then
             local c=lp.Character
             if c and c~=lastc then
                 lastc=c
-                replicatesignal(cdsb)
+                permadeathlmao()
                 pdloadedtime=osclock()+rst
                 while lastc==c do
                     local h=FindFirstChildOfClass(c,"Humanoid")
