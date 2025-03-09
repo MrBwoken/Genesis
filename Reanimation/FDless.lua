@@ -298,7 +298,9 @@ local c=nil
 local stopreanimate=function() 
 	if c then
 		c=nil
-		firesignal()
+		if replicatesignal then
+ 		replicatesignal(cdsb)
+ 		end
 		return true
 	end
 	return false
@@ -448,12 +450,12 @@ end)
 
 if permadeath then
     if replicatesignal then
-        firesignal()
+        replicatesignal(cdsb)
         pdloadedtime=osclock()+rst
         local lastc=nil
         local hdied=function()
             if not c then
-                firesignal()
+                replicatesignal(cdsb)
                 pdloadedtime=osclock()+rst
             end
         end
@@ -461,7 +463,7 @@ if permadeath then
             local c=lp.Character
             if c and c~=lastc then
                 lastc=c
-                firesignal()
+                replicatesignal(cdsb)
                 pdloadedtime=osclock()+rst
                 while lastc==c do
                     local h=FindFirstChildOfClass(c,"Humanoid")
@@ -996,8 +998,11 @@ local reanimate=function()
 							end
 						end
                                          elseif respawntp==4 then
+						local t=osclock()+0.17
+						if pdloadedtime and pdloadedtime>t then
+							t=pdloadedtime
+						end
 						hatdrop()
-						twait(0.17)
 					end
 					if newc~=c then
 						return
