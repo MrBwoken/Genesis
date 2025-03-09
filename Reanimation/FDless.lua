@@ -998,11 +998,8 @@ local reanimate=function()
 							end
 						end
                                          elseif respawntp==4 then
-						local t=osclock()+0.17
-						if pdloadedtime and pdloadedtime>t then
-							t=pdloadedtime
-						end
 						hatdrop()
+						twait(0.17)
 					end
 					if newc~=c then
 						return
