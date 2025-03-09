@@ -998,8 +998,10 @@ local reanimate=function()
 							end
 						end
                                          elseif respawntp==4 then
+						spawn(function()
+						twait(0.18)
 						hatdrop()
-						twait(0.17)
+						end)
 					end
 					if newc~=c then
 						return
