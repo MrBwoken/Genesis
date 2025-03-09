@@ -426,9 +426,9 @@ local hatdrop = function()
 	until plr.Character ~= character or dropped
 
 	if dropped then
-		print("Fdless HATDROP: Worked!")
+		print("FDLESS HATDROP: Worked!")
 	else
-		print("Fdless HATDROP: Failed!")
+		print("FDLESS HATDROP: Failed!")
 	end
 end
 
@@ -447,13 +447,13 @@ end)
 
 
 if permadeath then
-    if replicatesignal then
-        permadeathlmao()
+    if support then
+        firesignal()
         pdloadedtime=osclock()+rst
         local lastc=nil
         local hdied=function()
             if not c then
-                permadeathlmao()
+                firesignal()
                 pdloadedtime=osclock()+rst
             end
         end
@@ -461,7 +461,7 @@ if permadeath then
             local c=lp.Character
             if c and c~=lastc then
                 lastc=c
-                permadeathlmao()
+                firesignal()
                 pdloadedtime=osclock()+rst
                 while lastc==c do
                     local h=FindFirstChildOfClass(c,"Humanoid")
@@ -480,6 +480,7 @@ else
     replicatesignal=nil
     pdloadedtime=nil
 end
+
 local reanimate=function()
 	--[[
 		FDless reanimate by MyWorld
