@@ -1024,12 +1024,12 @@ local reanimate=function()
 							insGet(newc,"BreakJoints")(newc)
 						end
 					elseif breakjointsmethod==3 then
+						hatdrop()
 						insGet(newc,"BreakJoints")(newc)
 						local h=FindFirstChildOfClass(newc,"Humanoid")
 						if h then
 							insSet(h,"Health",0)
 						end
-						hatdrop()
 						end
 					else
 						insGet(newc,"BreakJoints")(newc)
