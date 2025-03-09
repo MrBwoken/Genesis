@@ -997,12 +997,6 @@ local reanimate=function()
 								break
 							end
 						end
-                                         elseif respawntp==4 then
-						spawn(function()
-						twait(0.18)
-						hatdrop()
-						end)
-					end
 					if newc~=c then
 						return
 					end
@@ -1028,6 +1022,9 @@ local reanimate=function()
 							insSet(h,"Health",0)
 						else
 							insGet(newc,"BreakJoints")(newc)
+						end
+					elseif breakjointsmethod==3 then
+						hatdrop()
 						end
 					else
 						insGet(newc,"BreakJoints")(newc)
