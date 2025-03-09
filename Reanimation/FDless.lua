@@ -447,7 +447,7 @@ end)
 
 
 if permadeath then
-    if support then
+    if replicatesignal then
         firesignal()
         pdloadedtime=osclock()+rst
         local lastc=nil
